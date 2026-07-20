@@ -14,17 +14,19 @@ A simple bookstore management REST API built with **FastAPI** and **SQLModel**, 
 | Docker Compose | Runs PostgreSQL locally |
 
 ## Project Structure
-bookstore-api/
-├── main.py                 # FastAPI app and all endpoints
-├── models/
-│   ├── init.py
-│   └── book.py              # Book, BookCreate, BookUpdate models
-├── database/
-│   ├── init.py
-│   └── session.py           # DB engine and session dependency
-├── .env                    # DATABASE_URL (not committed to git)
-├── docker-compose.yml        # PostgreSQL container config
-└── venv/                     # Virtual environment (not committed to git)
+
+| File / Folder | Purpose |
+|---|---|
+| main.py | FastAPI app and all endpoints |
+| models/ | Data models folder |
+| models/__init__.py | Package initializer |
+| models/book.py | Book, BookCreate, and BookUpdate models |
+| database/ | Database configuration folder |
+| database/__init__.py | Package initializer |
+| database/session.py | DB engine and session dependency |
+| .env | DATABASE_URL configuration |
+| docker-compose.yml | PostgreSQL container config |
+| venv/ | Virtual environment |
 ## Setup
 
 ### 1. Clone and enter the project
@@ -87,7 +89,10 @@ Data Models
 Book
 id, title, author, isbn (unique), published_year, price, stock, available, created_at, updated_at
 Notes
-Route ordering matters: /books/search is declared before /books/{book_id} so FastAPI does not try to interpret "search" as a book ID.
-BookUpdate uses exclude_unset=True so PATCH requests only modify the fields explicitly sent, not all fields.
-To reset the database schema after model changes: docker compose down -v && docker compose up -d.
+   -Route ordering matters: /books/search is declared before /books/{book_id} so FastAPI does not try to interpret "search" as a book ID.
+
+    -BookUpdate uses exclude_unset=True so PATCH requests only modify the fields explicitly sent, not all fields.
+
+    -To reset the database schema after model changes: docker compose down -v && docker compose up -d.
+    
 AuthorC027-01-0860/2024
